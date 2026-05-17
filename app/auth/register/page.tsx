@@ -100,7 +100,7 @@ export default function RegisterPage() {
           </div>
           {smsSent && (
             <div className="flex flex-col gap-2">
-              <span className="text-[10px] text-text-tertiary">Code recu (6 chiffres, demo)</span>
+              <span className="text-[10px] text-text-tertiary">💡 Code démo : <strong style={{color:"#00e5a0"}}>123456</strong></span>
               <div className="flex gap-2 justify-center">
                 {otp.map((digit, i) => (
                   <input
