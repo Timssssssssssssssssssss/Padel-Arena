@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter, Orbitron, Rajdhani } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
@@ -8,8 +8,15 @@ const _orbitron = Orbitron({ subsets: ['latin'], variable: '--font-orbitron', we
 const _rajdhani = Rajdhani({ subsets: ['latin'], variable: '--font-rajdhani', weight: ['300', '400', '500', '600', '700'] })
 
 export const metadata: Metadata = {
-  title: 'Padel Arena - Competitive Padel Platform',
-  description: 'The Faceit of Padel. Compete, rank up, and dominate the court.',
+  title: 'Padel Arena - Plateforme Compétitive de Padel',
+  description: 'Le Faceit du Padel. Compétis, monte en rang et domine le court.',
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 }
 
 export default function RootLayout({
@@ -19,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${_inter.variable} ${_orbitron.variable} ${_rajdhani.variable} bg-background`}>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased overflow-x-hidden">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
