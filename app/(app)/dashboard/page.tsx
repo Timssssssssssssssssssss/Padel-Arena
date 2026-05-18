@@ -1,5 +1,5 @@
 "use client"
-
+ 
 import { Topbar } from "@/components/topbar"
 import { RankBadge } from "@/components/rank-badge"
 import { EloBar } from "@/components/elo-bar"
@@ -10,26 +10,20 @@ import { ChallengePill } from "@/components/challenge-pill"
 import { TrustBar } from "@/components/trust-bar"
 import { CURRENT_PLAYER, CURRENT_TEAM, RECENT_MATCHES, INCOMING_CHALLENGES, getRank } from "@/lib/mock-data"
 import { Swords, Trophy, Flame, Star, TrendingUp, Zap } from "lucide-react"
-
+ 
 export default function DashboardPage() {
   const rank = getRank(CURRENT_PLAYER.elo)
-
+ 
   return (
     <>
-      <Topbar title="Dashboard">
-        <button className="h-8 px-4 rounded-md text-xs font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors flex items-center gap-2">
-          <Swords className="h-3.5 w-3.5" />
-          Trouver un match
-        </button>
-      </Topbar>
-
+      <Topbar title="Dashboard" />
+ 
       <div className="p-6 flex flex-col gap-6">
         {/* Hero Card */}
         <div
           className="rounded-xl p-6 border border-border relative overflow-hidden"
           style={{ backgroundColor: "#12121f" }}
         >
-          {/* Subtle gradient bg accent */}
           <div
             className="absolute inset-0 opacity-5"
             style={{
@@ -37,7 +31,6 @@ export default function DashboardPage() {
             }}
           />
           <div className="relative flex flex-col lg:flex-row lg:items-center gap-6">
-            {/* Left: Elo + Rank */}
             <div className="flex items-center gap-5">
               <RankBadge elo={CURRENT_PLAYER.elo} size="lg" showLabel />
               <div>
@@ -53,8 +46,7 @@ export default function DashboardPage() {
                 <EloBar elo={CURRENT_PLAYER.elo} className="mt-3 max-w-xs" />
               </div>
             </div>
-
-            {/* Right: Inline stats */}
+ 
             <div className="flex items-center gap-6 lg:ml-auto flex-wrap">
               <div className="flex flex-col items-center">
                 <span className="text-lg font-bold font-[var(--font-rajdhani)] text-foreground">{CURRENT_PLAYER.winRate}%</span>
@@ -82,89 +74,35 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
-
+ 
         {/* 4 Stat Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <StatCard
-            label="Matchs"
-            value={CURRENT_PLAYER.matchesPlayed}
-            subtitle="total"
-            accentColor="#00e5a0"
-            icon={<Swords className="h-4 w-4" />}
-          />
-          <StatCard
-            label="Victoires"
-            value={CURRENT_PLAYER.victories}
-            subtitle={`${CURRENT_PLAYER.winRate}% winrate`}
-            accentColor="#00e5a0"
-            icon={<Trophy className="h-4 w-4" />}
-          />
-          <StatCard
-            label="Best Streak"
-            value={CURRENT_PLAYER.bestStreak}
-            subtitle="victoires consecutives"
-            accentColor="#ffaa00"
-            icon={<Flame className="h-4 w-4" />}
-          />
-          <StatCard
-            label="Peak Elo"
-            value={CURRENT_PLAYER.peakElo}
-            subtitle="record personnel"
-            accentColor="#b9f2ff"
-            icon={<TrendingUp className="h-4 w-4" />}
-          />
+          <StatCard label="Matchs" value={CURRENT_PLAYER.matchesPlayed} subtitle="total" accentColor="#00e5a0" icon={<Swords className="h-4 w-4" />} />
+          <StatCard label="Victoires" value={CURRENT_PLAYER.victories} subtitle={`${CURRENT_PLAYER.winRate}% winrate`} accentColor="#00e5a0" icon={<Trophy className="h-4 w-4" />} />
+          <StatCard label="Best Streak" value={CURRENT_PLAYER.bestStreak} subtitle="victoires consecutives" accentColor="#ffaa00" icon={<Flame className="h-4 w-4" />} />
+          <StatCard label="Peak Elo" value={CURRENT_PLAYER.peakElo} subtitle="record personnel" accentColor="#b9f2ff" icon={<TrendingUp className="h-4 w-4" />} />
         </div>
-
+ 
         {/* 2-col: Match history + Team & Challenges */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-          {/* Match History */}
           <div className="lg:col-span-3 rounded-xl border border-border overflow-hidden" style={{ backgroundColor: "#12121f" }}>
             <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-              <h2 className="text-sm font-semibold font-[var(--font-rajdhani)] text-foreground uppercase tracking-wider">
-                Historique recent
-              </h2>
+              <h2 className="text-sm font-semibold font-[var(--font-rajdhani)] text-foreground uppercase tracking-wider">Historique recent</h2>
               <Zap className="h-4 w-4 text-primary" />
             </div>
             <div className="divide-y divide-border/50">
               {RECENT_MATCHES.map((match) => (
-                <MatchRow
-                  key={match.id}
-                  opponent={match.opponent}
-                  opponentEmoji={match.opponentEmoji}
-                  result={match.result}
-                  score={match.score}
-                  eloDelta={match.eloDelta}
-                  date={match.date}
-                />
+                <MatchRow key={match.id} opponent={match.opponent} opponentEmoji={match.opponentEmoji} result={match.result} score={match.score} eloDelta={match.eloDelta} date={match.date} />
               ))}
             </div>
           </div>
-
-          {/* Team + Challenges */}
+ 
           <div className="lg:col-span-2 flex flex-col gap-4">
-            <TeamCard
-              emoji={CURRENT_TEAM.emoji}
-              name={CURRENT_TEAM.name}
-              elo={CURRENT_TEAM.elo}
-              wins={CURRENT_TEAM.wins}
-              draws={CURRENT_TEAM.draws}
-              streak={CURRENT_TEAM.streak}
-            />
-
+            <TeamCard emoji={CURRENT_TEAM.emoji} name={CURRENT_TEAM.name} elo={CURRENT_TEAM.elo} wins={CURRENT_TEAM.wins} draws={CURRENT_TEAM.draws} streak={CURRENT_TEAM.streak} />
             <div className="flex flex-col gap-3">
-              <h3 className="text-xs font-semibold text-text-secondary uppercase tracking-wider px-1">
-                Defis entrants
-              </h3>
+              <h3 className="text-xs font-semibold text-text-secondary uppercase tracking-wider px-1">Defis entrants</h3>
               {INCOMING_CHALLENGES.map((challenge) => (
-                <ChallengePill
-                  key={challenge.id}
-                  teamName={challenge.teamName}
-                  teamEmoji={challenge.teamEmoji}
-                  elo={challenge.elo}
-                  message={challenge.message}
-                  estimatedGain={challenge.estimatedGain}
-                  estimatedLoss={challenge.estimatedLoss}
-                />
+                <ChallengePill key={challenge.id} teamName={challenge.teamName} teamEmoji={challenge.teamEmoji} elo={challenge.elo} message={challenge.message} estimatedGain={challenge.estimatedGain} estimatedLoss={challenge.estimatedLoss} />
               ))}
             </div>
           </div>
@@ -172,4 +110,3 @@ export default function DashboardPage() {
       </div>
     </>
   )
-}
