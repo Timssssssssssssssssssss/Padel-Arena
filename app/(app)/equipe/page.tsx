@@ -16,9 +16,9 @@ const BET_PRESETS = [10, 20, 30, 40]
 type EquipeTab = "team" | "create" | "invite"
 
 const EQUIPE_TABS: { id: EquipeTab; label: string }[] = [
-  { id: "team", label: "Mon Equipe" },
-  { id: "create", label: "Creer une equipe" },
-  { id: "invite", label: "Inviter un coequipier" },
+  { id: "team", label: "Mon Équipe" },
+  { id: "create", label: "➕ Créer" },
+  { id: "invite", label: "🔍 Inviter" },
 ]
 
 export default function TeamPage() {
