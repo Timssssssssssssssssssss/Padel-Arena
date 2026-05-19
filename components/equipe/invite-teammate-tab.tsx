@@ -51,11 +51,10 @@ export function InviteTeammateTab() {
             <button
               type="button"
               onClick={() => setSearched(true)}
-              className="h-10 px-4 rounded-lg text-sm font-bold flex items-center gap-2 shrink-0"
+              className="h-10 w-10 rounded-lg font-bold flex items-center justify-center shrink-0"
               style={{ backgroundColor: "#00e5a0", color: "#070710" }}
             >
               <Search className="h-4 w-4" />
-              Rechercher
             </button>
           </div>
         </div>
