@@ -1,5 +1,5 @@
 "use client"
- 
+
 import { Topbar } from "@/components/topbar"
 import { RankBadge } from "@/components/rank-badge"
 import { EloBar } from "@/components/elo-bar"
@@ -10,43 +10,26 @@ import { ChallengePill } from "@/components/challenge-pill"
 import { TrustBar } from "@/components/trust-bar"
 import { CURRENT_PLAYER, CURRENT_TEAM, RECENT_MATCHES, INCOMING_CHALLENGES, getRank } from "@/lib/mock-data"
 import { Swords, Trophy, Flame, Star, TrendingUp, Zap } from "lucide-react"
- 
+
 export default function DashboardPage() {
   const rank = getRank(CURRENT_PLAYER.elo)
- 
   return (
     <>
       <Topbar title="Dashboard" />
- 
       <div className="p-6 flex flex-col gap-6">
-        {/* Hero Card */}
-        <div
-          className="rounded-xl p-6 border border-border relative overflow-hidden"
-          style={{ backgroundColor: "#12121f" }}
-        >
-          <div
-            className="absolute inset-0 opacity-5"
-            style={{
-              background: `radial-gradient(ellipse at 30% 50%, ${rank.color}, transparent 70%)`,
-            }}
-          />
+        <div className="rounded-xl p-6 border border-border relative overflow-hidden" style={{ backgroundColor: "#12121f" }}>
+          <div className="absolute inset-0 opacity-5" style={{ background: `radial-gradient(ellipse at 30% 50%, ${rank.color}, transparent 70%)` }} />
           <div className="relative flex flex-col lg:flex-row lg:items-center gap-6">
             <div className="flex items-center gap-5">
               <RankBadge elo={CURRENT_PLAYER.elo} size="lg" showLabel />
               <div>
                 <div className="flex items-baseline gap-2">
-                  <span
-                    className="text-5xl font-bold font-[var(--font-orbitron)] tabular-nums tracking-tight"
-                    style={{ color: rank.color }}
-                  >
-                    {CURRENT_PLAYER.elo}
-                  </span>
+                  <span className="text-5xl font-bold font-[var(--font-orbitron)] tabular-nums tracking-tight" style={{ color: rank.color }}>{CURRENT_PLAYER.elo}</span>
                   <span className="text-sm text-text-secondary">Elo</span>
                 </div>
                 <EloBar elo={CURRENT_PLAYER.elo} className="mt-3 max-w-xs" />
               </div>
             </div>
- 
             <div className="flex items-center gap-6 lg:ml-auto flex-wrap">
               <div className="flex flex-col items-center">
                 <span className="text-lg font-bold font-[var(--font-rajdhani)] text-foreground">{CURRENT_PLAYER.winRate}%</span>
@@ -74,16 +57,12 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
- 
-        {/* 4 Stat Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <StatCard label="Matchs" value={CURRENT_PLAYER.matchesPlayed} subtitle="total" accentColor="#00e5a0" icon={<Swords className="h-4 w-4" />} />
           <StatCard label="Victoires" value={CURRENT_PLAYER.victories} subtitle={`${CURRENT_PLAYER.winRate}% winrate`} accentColor="#00e5a0" icon={<Trophy className="h-4 w-4" />} />
           <StatCard label="Best Streak" value={CURRENT_PLAYER.bestStreak} subtitle="victoires consecutives" accentColor="#ffaa00" icon={<Flame className="h-4 w-4" />} />
           <StatCard label="Peak Elo" value={CURRENT_PLAYER.peakElo} subtitle="record personnel" accentColor="#b9f2ff" icon={<TrendingUp className="h-4 w-4" />} />
         </div>
- 
-        {/* 2-col: Match history + Team & Challenges */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           <div className="lg:col-span-3 rounded-xl border border-border overflow-hidden" style={{ backgroundColor: "#12121f" }}>
             <div className="flex items-center justify-between px-4 py-3 border-b border-border">
@@ -96,7 +75,6 @@ export default function DashboardPage() {
               ))}
             </div>
           </div>
- 
           <div className="lg:col-span-2 flex flex-col gap-4">
             <TeamCard emoji={CURRENT_TEAM.emoji} name={CURRENT_TEAM.name} elo={CURRENT_TEAM.elo} wins={CURRENT_TEAM.wins} draws={CURRENT_TEAM.draws} streak={CURRENT_TEAM.streak} />
             <div className="flex flex-col gap-3">
