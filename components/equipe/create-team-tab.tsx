@@ -36,6 +36,19 @@ export function CreateTeamTab() {
       <div className="flex flex-col gap-2">
         <label className="text-xs text-text-secondary">Emoji de l&apos;equipe</label>
         <div className="grid grid-cols-5 sm:grid-cols-10 gap-2">
+          {/* Option sans emoji */}
+          <button
+            type="button"
+            onClick={() => setEmoji("")}
+            className="h-11 rounded-lg text-xs font-bold flex items-center justify-center transition-transform hover:scale-110"
+            style={{
+              backgroundColor: emoji === "" ? "rgba(0,229,160,0.12)" : "#0d0d1a",
+              border: emoji === "" ? "2px solid #00e5a0" : "1px solid rgba(255,255,255,0.07)",
+              color: emoji === "" ? "#00e5a0" : "#606080",
+            }}
+          >
+            ∅
+          </button>
           {TEAM_EMOJIS.map((e) => (
             <button
               key={e}
